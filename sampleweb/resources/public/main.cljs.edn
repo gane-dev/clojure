@@ -1,0 +1,3 @@
+{:require  [sampleweb.core]
+ :init-fns []
+ :compiler-options {}}
