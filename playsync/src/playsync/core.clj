@@ -97,3 +97,49 @@
   (let [c (chan)]
     (go (while true (append-to-file filename (<! c))))
     (dotimes [n num-quotes] (go (>! c (random-quote))))))
+
+(defn upper-caser
+  [in]
+  (let [out (chan)]
+    (go (while true (>! out (clojure.string/upper-case (<! in)))))
+    out))
+
+
+(defn reverser
+  [in]
+  (let [out (chan)]
+    (go (while true (>! out (clojure.string/reverse (<! in)))))
+    out))
+
+(defn printer
+  [in]
+  (go (while true (println (<! in)))))
+
+(def in-chan (chan))
+
+(def upper-caser-out (upper-caser in-chan))
+(def reverser-out (reverser upper-caser-out))
+;;(printer reverser-out)
+
+(defmulti full-moon-behavior (fn [were-creature ](:were-type were-creature)))
+
+(defmethod full-moon-behavior :wolf
+  [were-creature]
+  (str (:name were-creature) " will howl and murder"))
+(defmethod full-moon-behavior :simmons
+  [were-creature]
+  (str (:name were-creature) " will encourage people and sweat to the oldies"))
+
+
+
+(defmulti types (fn [x y] [(class x) (class y)]))
+
+(defmethod types [java.lang.String java.lang.String]
+  [x y]
+  "Two strings")
+(defmethod types [java.lang.Float java.lang.Float]
+  [x y]
+  "Two integers")
+
+
+
