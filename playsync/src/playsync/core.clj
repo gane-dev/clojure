@@ -64,3 +64,36 @@
    (go (println (<! c3))) (>!! c1 a))
  
   )
+(defn upload
+  [headshot c]
+  (go (Thread/sleep (rand 100))
+      (>! c headshot)))
+
+(defn testupload
+  []
+  (let [c1 (chan)
+        c2 (chan)
+        c3 (chan)]
+    (upload "serious.jgp" c1)
+    (upload "fun.jgp" c2)
+    (upload "sassy.jgp" c3)
+    (let [[headshot channel] (alts!! [c1 c2 c3])]
+      (println "sending headshot" headshot))))
+
+(defn append-to-file
+  [filename s]
+  (spit filename s :append true))
+
+(defn format-quote
+  [quote]
+  (str "=== BEGIN QUOTE ===\n" quote "===END QUOTE"))
+
+(defn random-quote
+  []
+  (format-quote (slurp "http://www.braveclojure.com/random-quote")))
+
+(defn snag-quotes
+  [filename num-quotes]
+  (let [c (chan)]
+    (go (while true (append-to-file filename (<! c))))
+    (dotimes [n num-quotes] (go (>! c (random-quote))))))
