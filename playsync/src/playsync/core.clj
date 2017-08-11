@@ -96,4 +96,4 @@
   [filename num-quotes]
   (let [c (chan)]
     (go (while true (append-to-file filename (<! c))))
-    (dotimes [n num-quotes] (go (>! c (random-quote))))))
+    (dotimes [n num-quotes] (go (>! c (random-quote)))))) 
