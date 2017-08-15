@@ -1,0 +1,17 @@
+[0mCompiling "resources/public/js/main.js" from ["src"]...
+Compiling resources\public\js\datascript\arrays.cljc
+Compiling resources\public\js\datascript\btset.cljc
+Compiling resources\public\js\datascript\db.cljc
+Compiling resources\public\js\datascript\parser.cljc
+Compiling resources\public\js\datascript\lru.cljc
+Compiling resources\public\js\datascript\pull_parser.cljc
+Compiling resources\public\js\datascript\pull_api.cljc
+Compiling resources\public\js\datascript\impl\entity.cljc
+Compiling resources\public\js\datascript\query.cljc
+Compiling resources\public\js\datascript\core.cljc
+Compiling src\om_datascript\core.cljs
+Compiling target\figwheel_temp\dev\figwheel\connect.cljs
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  out\om_datascript\core.js
+[32mSuccessfully compiled "resources/public/js/main.js" in 4.137 seconds.[0m
