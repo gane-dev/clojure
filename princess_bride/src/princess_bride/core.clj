@@ -145,6 +145,6 @@
   (inserts)
   (updates)
   (selects)
-  (deletes)
-  (drop-tables)
+   ;; (deletes)
+    ;; (drop-tables)
   (println "\n\n THE END\n"))
