@@ -2,6 +2,7 @@
   (:gen-class)
   (:require [princess-bride.db :refer [db]]
             [princess-bride.db.characters :as characters]
+            [princess-bride.db.datasource :as datasource]
             [princess-bride.db.quotes :as quotes] 
             [clojure.pprint :as pprint]
             [clojure.string :as string]
@@ -136,15 +137,19 @@
          :cols ["name" "specialty"]}))
 
   )
-
+(defn select-oracle
+  []
+ (ex (datasource/all-sources db))
+)
 (defn -main
 
   []
-  (drop-tables)
-  (create-tables)
-  (inserts)
-  (updates)
-  (selects)
+  (select-oracle)
+  ;; (drop-tables)
+  ;; (create-tables)
+  ;; (inserts)
+  ;; (updates)
+  ;; (selects)
    ;; (deletes)
     ;; (drop-tables)
   (println "\n\n THE END\n"))

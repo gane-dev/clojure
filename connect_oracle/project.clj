@@ -1,4 +1,4 @@
-(defproject princess_bride "0.1.0"
+(defproject connect_oracle "0.1.0"
   :description "HugSQl Oracle"
   :url ""
   :license {:name "Public License"
@@ -8,6 +8,6 @@
                  ;;   [com.h2database/h2 "1.4.190"]
                  [org.clojure/java.jdbc "0.7.0"]]
   :resource-paths ["resources/ojdbc7.jar"]
-  :main ^:skip-aot princess-bride.core
+  :main ^:skip-aot connect-oracle.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
