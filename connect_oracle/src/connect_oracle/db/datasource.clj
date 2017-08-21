@@ -2,3 +2,5 @@
   (:require [hugsql.core :as hugsql]))
 
 (hugsql/def-db-fns "connect_oracle/db/sql/datasource.sql")
+
+(hugsql/def-sqlvec-fns "connect_oracle/db/sql/datasource.sql")

@@ -6,19 +6,21 @@
             
             [clojure.pprint :as pprint]
             [clojure.string :as string]
-            [clojure.java.jdbc]))
+            [clojure.java.jdbc :as j]
+            [jdbc.core :as jdbc]
+            ))
             
 
 
 
-(def pp pprint/pprint)
+(def pp1 pprint/pprint)
 
 (defn ppl [x]
-  (pp x) (println))
+  (pp1 x) (println))
 
 (defn ppr
   [x]
-  (print (string/replace (with-out-str (pp x)) #"\n$" ""))
+  (print (string/replace (with-out-str (pp1 x)) #"\n$" ""))
   (println " ;;=>"))
 
 (defn ppsv
@@ -34,7 +36,7 @@
        (when (seq (rest sv)) "\n,")
        (string/replace
          (string/join ","
-           (map #(with-out-str (pp %)) (rest sv)))
+           (map #(with-out-str (pp1 %)) (rest sv)))
          #"\n$"
          "")
        "]\n"])))
@@ -55,13 +57,25 @@
      (ppr (quote ~@code))
      (ppsv ~@code)))
 
+;;HUGSQL
 (defn select-oracle
   []
  (ex (datasource/all-sources db))
 )
-(defn -main
-
+;;CLOJURE JDBC
+(defn jdbc-function
   []
-  (select-oracle)
+  (with-open [conn (jdbc/connection db)]
+  (jdbc/execute conn "BEGIN 
+  GDEVARAJ.TEST_CLOJURE_EXECUTION;
+END;"))
+)
+(defn exe-sp
+  []
+  (j/execute! db  ["TEST_CLOJURE_EXECUTION" ])
+  (defn -main
 
-  (println "\n\n THE END\n"))
+    []
+    (take 1 (select-oracle)) 
+
+    (println "\n\n THE END\n")))

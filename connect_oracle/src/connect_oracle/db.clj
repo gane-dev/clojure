@@ -3,9 +3,6 @@
             )
   (:require [clojure.java.jdbc :as j]
            ))
-
-
-                :password "bans2008"})
 (def db  
   {:classname "oracle.jdbc.driver.OracleDriver"
    :subprotocol "oracle"
