@@ -117,6 +117,15 @@ END;"))
   GDEVARAJ.TEST_CLOJURE_EXECUTION;
 END;"))
 )
+(defn lazy-cursors 
+  []
+  (with-open [conn (jdbc/connection ds)]
+  (jdbc/atomic conn
+  (with-open [cursor (jdbc/fetch-lazy conn "select * from test_access;")]
+    (doseq [row (jdbc/cursor->lazyseq cursor)]
+      (println row)))
+)))
+
 (defn exe-sp
   []
   (j/execute! db  ["TEST_CLOJURE_EXECUTION" ])
