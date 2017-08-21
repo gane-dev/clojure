@@ -7,7 +7,11 @@
                  [com.layerware/hugsql "0.4.6"]
                  ;;   [com.h2database/h2 "1.4.190"]
                  [org.clojure/java.jdbc "0.7.0"]
-                 [funcool/clojure.jdbc "0.9.0"]]
+                 [funcool/clojure.jdbc "0.9.0"]
+;;                 [com.mchange/c3p0 "0.9.5"]
+                 ;;[hikari-cp "1.7.6"]
+[clojure.jdbc/clojure.jdbc-c3p0 "0.3.3"]
+]
   :resource-paths ["resources/ojdbc7.jar"]
   :main ^:skip-aot connect-oracle.core
   :target-path "target/%s"
